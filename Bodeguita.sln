@@ -1,0 +1,95 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data Layer", "Data Layer", "{62CAE1E0-DBE7-40C4-8243-24C7E08E3776}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business Layer", "Business Layer", "{3CB11C1A-A58A-414F-9533-36B63DD14C72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bodeguita.Data", "Bodeguita.Data\Bodeguita.Data.csproj", "{0C479142-7FC3-4352-83F6-C3B996C19AF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bodeguita.Domain", "Bodeguita.Domain\Bodeguita.Domain.csproj", "{90A4361C-9EA4-4DF6-B68A-6CBBBEDDC33C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bodeguita.Logic", "Bodeguita.Logic\Bodeguita.Logic.csproj", "{B885715A-5815-4310-95A1-786275942EBA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services Layer", "Services Layer", "{B54DEF1B-788C-4440-B02A-E916DDBD06D9}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Bodeguita.SoapService", "Bodeguita.SoapService\", "{5C0A8AC3-F157-4DF7-AB89-A497A9BA143B}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7.2"
+		ProjectReferences = "{b885715a-5815-4310-95a1-786275942eba}|Bodeguita.Logic.dll;{90A4361C-9EA4-4DF6-B68A-6CBBBEDDC33C}|Bodeguita.Domain.dll;{0C479142-7FC3-4352-83F6-C3B996C19AF5}|Bodeguita.Data.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_51350"
+		Debug.AspNetCompiler.PhysicalPath = "Bodeguita.SoapService\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51350\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_51350"
+		Release.AspNetCompiler.PhysicalPath = "Bodeguita.SoapService\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51350\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "51350"
+		SlnRelativePath = "Bodeguita.SoapService\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI Layer", "UI Layer", "{01E23A73-1506-4E6C-A054-F75E2305341D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bodeguita.WebApp", "Bodeguita.WebApp\Bodeguita.WebApp.csproj", "{CA0C96A5-B5FD-46E5-91BD-BC3A6F92C7F9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5C0A8AC3-F157-4DF7-AB89-A497A9BA143B} = {5C0A8AC3-F157-4DF7-AB89-A497A9BA143B}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bodeguita.RestServices", "Bodeguita.RestServices\Bodeguita.RestServices.csproj", "{50CFE971-623C-4CAD-BA33-970C1041CA2B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0C479142-7FC3-4352-83F6-C3B996C19AF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C479142-7FC3-4352-83F6-C3B996C19AF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C479142-7FC3-4352-83F6-C3B996C19AF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C479142-7FC3-4352-83F6-C3B996C19AF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90A4361C-9EA4-4DF6-B68A-6CBBBEDDC33C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90A4361C-9EA4-4DF6-B68A-6CBBBEDDC33C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90A4361C-9EA4-4DF6-B68A-6CBBBEDDC33C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90A4361C-9EA4-4DF6-B68A-6CBBBEDDC33C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B885715A-5815-4310-95A1-786275942EBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B885715A-5815-4310-95A1-786275942EBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B885715A-5815-4310-95A1-786275942EBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B885715A-5815-4310-95A1-786275942EBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C0A8AC3-F157-4DF7-AB89-A497A9BA143B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C0A8AC3-F157-4DF7-AB89-A497A9BA143B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C0A8AC3-F157-4DF7-AB89-A497A9BA143B}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C0A8AC3-F157-4DF7-AB89-A497A9BA143B}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{CA0C96A5-B5FD-46E5-91BD-BC3A6F92C7F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA0C96A5-B5FD-46E5-91BD-BC3A6F92C7F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA0C96A5-B5FD-46E5-91BD-BC3A6F92C7F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA0C96A5-B5FD-46E5-91BD-BC3A6F92C7F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50CFE971-623C-4CAD-BA33-970C1041CA2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50CFE971-623C-4CAD-BA33-970C1041CA2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50CFE971-623C-4CAD-BA33-970C1041CA2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50CFE971-623C-4CAD-BA33-970C1041CA2B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0C479142-7FC3-4352-83F6-C3B996C19AF5} = {62CAE1E0-DBE7-40C4-8243-24C7E08E3776}
+		{90A4361C-9EA4-4DF6-B68A-6CBBBEDDC33C} = {3CB11C1A-A58A-414F-9533-36B63DD14C72}
+		{B885715A-5815-4310-95A1-786275942EBA} = {3CB11C1A-A58A-414F-9533-36B63DD14C72}
+		{5C0A8AC3-F157-4DF7-AB89-A497A9BA143B} = {B54DEF1B-788C-4440-B02A-E916DDBD06D9}
+		{CA0C96A5-B5FD-46E5-91BD-BC3A6F92C7F9} = {01E23A73-1506-4E6C-A054-F75E2305341D}
+		{50CFE971-623C-4CAD-BA33-970C1041CA2B} = {B54DEF1B-788C-4440-B02A-E916DDBD06D9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D374F88B-337C-4045-A2BF-958951138812}
+	EndGlobalSection
+EndGlobal

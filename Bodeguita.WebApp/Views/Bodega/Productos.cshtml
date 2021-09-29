@@ -1,0 +1,127 @@
+﻿
+@{
+    ViewBag.Title = "Productos";
+
+    var id = Request.Url.Segments.Last();
+}
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            loadData();
+            calcularTotal();
+        });
+
+        function agregar(id, nombre, precio) {
+            var productos = JSON.parse(localStorage.getItem("productos")) || [];
+
+            var idx = -1;
+
+            for (var i = 0; i < productos.length; i++) {
+                var obj = JSON.parse(productos[i]);
+                if (obj.id == id) {
+                    idx = i;
+                    break;
+                }
+            }
+
+            if (idx > -1) {
+                var obj = JSON.parse(productos[idx]);
+                obj.cantidad += 1;
+                productos[idx] = JSON.stringify(obj);
+            } else {
+                var producto = JSON.stringify({
+                    id, nombre, precio, cantidad:1
+                });
+                productos.push(producto);
+            }
+            localStorage.setItem("productos", JSON.stringify(productos));
+            calcularTotal();
+        }
+
+        function calcularTotal() {
+            var productos = JSON.parse(localStorage.getItem("productos")) || [];
+            var total = 0.0;
+            for (var i = 0; i < productos.length; i++) {
+                var obj = JSON.parse(productos[i]);
+                total += round(obj.cantidad * obj.precio);
+            }
+            $("#total").html("s/ " + round(total));
+
+        }
+
+        function round(num) {
+            var m = Number((Math.abs(num) * 100).toPrecision(15));
+            return Math.round(m) / 100 * Math.sign(num);
+        }
+
+
+        function loadData() {
+            var BaseUrl = '@GlobalVar.UrlApi';
+            $.ajax({
+                url: BaseUrl + "bodegas/" + @id + '/productos',
+                type: "GET",
+                datatype: "json",
+                success: function (data) {
+                    var html = '';
+                    $.each(data, function (key, item) {
+                        var link = '@Html.ActionLink("Supermarket", "Productos", "Bodega", new { id = "Id" }, new { @class = "btn btn-success btn-block" })'
+                        link = link.replace('Id', item.id);
+                        link = link.replace('Supermarket', item.nombre);
+                        link = link.replace('Id', item.id);
+                        var addNombre = "'" + item.nombre + "'";
+                        html += '<div class="col-md-4">';
+                        html += '<div class="media">';
+                        html += '<div class="media-left">';
+                        html += '<a href="#">';
+                        html += '<img class="media-object" height="64px" src="../../content/img/tienda.jpg" alt="' + item.nombre +'">';
+                        html += '</a>';
+                        html += '</div>';
+                        html += '<div class="media-body">';
+                        html += '<h4 class="media-heading">'+ item.nombre +'</h4>';
+                        html += '<p><strong>Precio:</strong> s/ ' + item.precioBodega +'</p>';
+                        html += '<p><button type="button" class="add btn btn-block btn-sm" onclick="agregar(' + item.id + ', ' + addNombre + ', '+ item.precioBodega +');">Agregar</button></p>';
+                        html += '</div>';
+                        html += '</div>';
+                        html += '</div>';
+
+                    });
+                    $('.productos').html(html);
+                },
+                error: function (ex) {
+                    console.log(ex);
+                    bootbox.alert({
+                        message: "Ocurrió un error al leer los datos.",
+                        size: 'small'
+                    });
+                }
+            });
+        }
+
+    </script>
+}
+
+<h2>Productos</h2>
+<div class="row">
+    <div class="col-md-8">
+        <div class="row productos">
+
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">Mi compra</div>
+            <div class="panel-body">
+                <div class="text-center">
+                    <p>Total a pagar</p>
+                    <h2 id="total"></h2>
+                </div>
+            </div>
+            <div class="panel-footer">
+                @Html.ActionLink("Confirmar compra", "", "Pedido", null, new { @class = "btn btn-default btn-block" })
+            </div>
+        </div>
+
+    </div>
+</div>
+

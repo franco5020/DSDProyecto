@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            loadData();
+
+            $("#btnConfirmar").click(function () {
+                var productos = JSON.parse(localStorage.getItem("productos")) || [];
+                var detalles = [];
+                for (var i = 0; i < productos.length; i++) {
+                    var obj = JSON.parse(productos[i]);
+                    detalles.push(obj);
+                }
+                console.log(productos);
+                $.ajax({
+                    url: '@Url.Action("Confirmar", "Pedido")',
+                    type: "POST",
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        IdCliente: 5, IdBodega: 7, Monto: 2.5, Detalles: detalles
+                    }),
+                    success: function (data) {
+                        var a = document.createElement('a');
+                        var url = window.URL.createObjectURL(data);
+                        a.href = url;
+                        a.download = 'Prediccion' + id + '.pdf';
+                        document.body.append(a);
+                        a.click();
+                        a.remove();
+                        window.URL.revokeObjectURL(url);
+                    }
+                });
+
+            })
+        });
+
+        function loadData() {
+            var productos = JSON.parse(localStorage.getItem("productos")) || [];
+            var html = '';
+            for (var i = 0; i < productos.length; i++) {
+                var obj = JSON.parse(productos[i]);
+                html += '<tr>';
+                html += '<td>' + obj.nombre + '</td>';
+                html += '<td>' + obj.precio + '</td>';
+                html += '<td>' + obj.cantidad + '</td>';
+                html += '<td class="text-right">' + round(obj.precio * obj.cantidad) + '</td>';
+                html += '</tr>';
+            }
+            $('#detalle').html(html);
+
+            calcularTotal();
+        }
+
+        function calcularTotal() {
+            var productos = JSON.parse(localStorage.getItem("productos")) || [];
+            var total = 0.0;
+            for (var i = 0; i < productos.length; i++) {
+                var obj = JSON.parse(productos[i]);
+                total += round(obj.cantidad * obj.precio);
+            }
+            $("#total").html("s/ " + round(total));
+
+        }
+
+        function round(num) {
+            var m = Number((Math.abs(num) * 100).toPrecision(15));
+            return Math.round(m) / 100 * Math.sign(num);
+        }
+
+
+
+    </script>
+}
+
+<h2>Confirmar compra</h2>
+<div class="row">
+    <div class="col-md-6">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th class="text-right">Importe</th>
+                </tr>
+            </thead>
+            <tbody id="detalle">
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="3">Total:</th>
+                    <th class="text-right"><span id="total"></span></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<address>
+    Juan Goméz<br />
+    El Sol 241- Comas<br />
+    <abbr title="Teléfono">P:</abbr>
+    963328212
+</address>
+
+<button class="btn btn-success" id="btnConfirmar">Confirmar Compra</button>

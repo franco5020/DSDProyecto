@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<script>
+
+
+
+</script>
+
+
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var currentLatLng;
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(loadData, showError);
+            }
+            else {
+                $("#message").html("Este navegador no soporta la Geolocalización.");
+            }
+
+            function showError(error) {
+                $("#message").html("No se puede obtener información de la geolocalización");
+            }
+
+        });
+
+        function loadData(position) {
+            currentLatLng = position.coords;
+            var ubicacion = currentLatLng.longitude + " " + currentLatLng.latitude;
+
+            var BaseUrl = '@GlobalVar.UrlApi';
+            $.ajax({
+                url: BaseUrl + "bodegas/cercanos",
+                type: "POST",
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    coordenada: ubicacion
+                }),
+                success: function (data) {
+                    var html = '';
+                    $.each(data, function (key, item) {
+                        var link = '@Html.ActionLink("Supermarket", "Productos", "Bodega", new { id = "Id" }, new { @class = "btn btn-success btn-block" })'
+                        link = link.replace('Id', item.id);
+                        link = link.replace('Supermarket', item.nombre);
+                        link = link.replace('Id', item.id);
+                        html += '<div class="col-md-3">';
+                        html += '<div class="panel">';
+                        html += '<div class="panel-body">';
+                        html += '<img class="img-thumbnail" src="../content/img/tienda.jpg" alt="Tienda" />';
+                        html += '<p>';
+                        html += '<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>';
+                        html += item.direccion;
+                        html += '</p>';
+                        html += '<p>' + link + '</p>';
+                        html += '</div>';
+                        html += '</div>';
+                        html += '</div>';
+                    });
+                    $('.bodegas').html(html);
+                },
+                error: function (ex) {
+                    bootbox.alert({
+                        message: "Ocurrió un error al cargar las ordenes de compra.",
+                        size: 'small'
+                    });
+                }
+            });
+        }
+
+    </script>
+}
+
+<h2>Tiendas</h2>
+<p id="message"></p>
+<div class="row bodegas">
+
+</div>

@@ -1,0 +1,15 @@
+D:\Proyectos\Net\Bodeguita\Bodeguita.Data\obj\Debug\Bodeguita.Data.csproj.AssemblyReference.cache
+D:\Proyectos\Net\Bodeguita\Bodeguita.Data\obj\Debug\Bodeguita.Data.csproj.CoreCompileInputs.cache
+D:\Proyectos\Net\Bodeguita\Bodeguita.Data\bin\Debug\Bodeguita.Data.dll.config
+D:\Proyectos\Net\Bodeguita\Bodeguita.Data\bin\Debug\Bodeguita.Data.dll
+D:\Proyectos\Net\Bodeguita\Bodeguita.Data\bin\Debug\Bodeguita.Data.pdb
+D:\Proyectos\Net\Bodeguita\Bodeguita.Data\bin\Debug\Bodeguita.Domain.dll
+D:\Proyectos\Net\Bodeguita\Bodeguita.Data\bin\Debug\EntityFramework.dll
+D:\Proyectos\Net\Bodeguita\Bodeguita.Data\bin\Debug\EntityFramework.SqlServer.dll
+D:\Proyectos\Net\Bodeguita\Bodeguita.Data\bin\Debug\Bodeguita.Domain.pdb
+D:\Proyectos\Net\Bodeguita\Bodeguita.Data\bin\Debug\Bodeguita.Domain.dll.config
+D:\Proyectos\Net\Bodeguita\Bodeguita.Data\bin\Debug\EntityFramework.xml
+D:\Proyectos\Net\Bodeguita\Bodeguita.Data\bin\Debug\EntityFramework.SqlServer.xml
+D:\Proyectos\Net\Bodeguita\Bodeguita.Data\obj\Debug\Bodeguita.Data.csproj.CopyComplete
+D:\Proyectos\Net\Bodeguita\Bodeguita.Data\obj\Debug\Bodeguita.Data.dll
+D:\Proyectos\Net\Bodeguita\Bodeguita.Data\obj\Debug\Bodeguita.Data.pdb

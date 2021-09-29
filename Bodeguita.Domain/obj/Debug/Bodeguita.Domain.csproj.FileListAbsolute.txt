@@ -1,0 +1,11 @@
+D:\Proyectos\Net\Bodeguita\Bodeguita.Domain\bin\Debug\Bodeguita.Domain.dll.config
+D:\Proyectos\Net\Bodeguita\Bodeguita.Domain\bin\Debug\Bodeguita.Domain.dll
+D:\Proyectos\Net\Bodeguita\Bodeguita.Domain\bin\Debug\Bodeguita.Domain.pdb
+D:\Proyectos\Net\Bodeguita\Bodeguita.Domain\bin\Debug\EntityFramework.dll
+D:\Proyectos\Net\Bodeguita\Bodeguita.Domain\bin\Debug\EntityFramework.SqlServer.dll
+D:\Proyectos\Net\Bodeguita\Bodeguita.Domain\bin\Debug\EntityFramework.xml
+D:\Proyectos\Net\Bodeguita\Bodeguita.Domain\bin\Debug\EntityFramework.SqlServer.xml
+D:\Proyectos\Net\Bodeguita\Bodeguita.Domain\obj\Debug\Bodeguita.Domain.csproj.CoreCompileInputs.cache
+D:\Proyectos\Net\Bodeguita\Bodeguita.Domain\obj\Debug\Bodeguita.Domain.csproj.CopyComplete
+D:\Proyectos\Net\Bodeguita\Bodeguita.Domain\obj\Debug\Bodeguita.Domain.dll
+D:\Proyectos\Net\Bodeguita\Bodeguita.Domain\obj\Debug\Bodeguita.Domain.pdb

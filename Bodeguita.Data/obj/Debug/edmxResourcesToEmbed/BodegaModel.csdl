@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BodegaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Bodega">
+    <Key>
+      <PropertyRef Name="idBodega" />
+    </Key>
+    <Property Name="idBodega" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="abreviatura" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="BodegaProducto" Relationship="BodegaModel.FK_BodegaProducto_Bodega" FromRole="Bodega" ToRole="BodegaProducto" />
+    <Property Name="ubicacion" Type="Geography" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="idCliente" />
+    </Key>
+    <Property Name="idCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="coordenadas" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Pedido" Relationship="BodegaModel.FK_Pedido_Cliente" FromRole="Cliente" ToRole="Pedido" />
+  </EntityType>
+  <EntityType Name="Pago">
+    <Key>
+      <PropertyRef Name="idPago" />
+    </Key>
+    <Property Name="idPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idPedido" Type="Int32" Nullable="false" />
+    <Property Name="precio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="atendido" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Pedido" Relationship="BodegaModel.FK_Pago_Pedido" FromRole="Pago" ToRole="Pedido" />
+  </EntityType>
+  <EntityType Name="Pedido">
+    <Key>
+      <PropertyRef Name="idPedido" />
+    </Key>
+    <Property Name="idPedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idCliente" Type="Int32" Nullable="false" />
+    <Property Name="idBodega" Type="Int32" Nullable="false" />
+    <Property Name="monto" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="atendido" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="DetallePedido" Relationship="Self.FK_DetallePedido_Pedido" FromRole="Pedido" ToRole="DetallePedido" />
+    <NavigationProperty Name="Cliente" Relationship="BodegaModel.FK_Pedido_Cliente" FromRole="Pedido" ToRole="Cliente" />
+    <NavigationProperty Name="Pago" Relationship="BodegaModel.FK_Pago_Pedido" FromRole="Pedido" ToRole="Pago" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="idProducto" />
+    </Key>
+    <Property Name="idProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="precio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="idPresentacion" Type="Int32" Nullable="false" />
+    <Property Name="idCategoria" Type="Int32" Nullable="false" />
+    <Property Name="idUsuarioRegistro" Type="Int32" Nullable="false" />
+    <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="idUsuarioModifico" Type="Int32" />
+    <Property Name="fechaModifico" Type="DateTime" Precision="3" />
+    <Property Name="imagen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="DetallePedido" Relationship="Self.FK_DetallePedido_Producto" FromRole="Producto" ToRole="DetallePedido" />
+    <NavigationProperty Name="BodegaProducto" Relationship="BodegaModel.FK_BodegaProducto_Producto" FromRole="Producto" ToRole="BodegaProducto" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="BodegaProducto">
+    <Key>
+      <PropertyRef Name="idBodega" />
+      <PropertyRef Name="idProducto" />
+      <PropertyRef Name="precio" />
+    </Key>
+    <Property Name="idBodega" Type="Int32" Nullable="false" />
+    <Property Name="idProducto" Type="Int32" Nullable="false" />
+    <Property Name="precio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <NavigationProperty Name="Bodega" Relationship="BodegaModel.FK_BodegaProducto_Bodega" FromRole="BodegaProducto" ToRole="Bodega" />
+    <NavigationProperty Name="Producto" Relationship="BodegaModel.FK_BodegaProducto_Producto" FromRole="BodegaProducto" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="DetallePedido">
+    <Key>
+      <PropertyRef Name="idPedido" />
+      <PropertyRef Name="idProducto" />
+      <PropertyRef Name="precio" />
+      <PropertyRef Name="atendido" />
+    </Key>
+    <Property Name="idPedido" Type="Int32" Nullable="false" />
+    <Property Name="idProducto" Type="Int32" Nullable="false" />
+    <Property Name="precio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="atendido" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Pedido" Relationship="Self.FK_DetallePedido_Pedido" FromRole="DetallePedido" ToRole="Pedido" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK_DetallePedido_Producto" FromRole="DetallePedido" ToRole="Producto" />
+  </EntityType>
+  <Association Name="FK_DetallePedido_Pedido">
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+    <End Role="DetallePedido" Type="Self.DetallePedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedido">
+        <PropertyRef Name="idPedido" />
+      </Principal>
+      <Dependent Role="DetallePedido">
+        <PropertyRef Name="idPedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DetallePedido_Producto">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="DetallePedido" Type="Self.DetallePedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="idProducto" />
+      </Principal>
+      <Dependent Role="DetallePedido">
+        <PropertyRef Name="idProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BodegaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bodega" EntityType="Self.Bodega" />
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+    <EntitySet Name="Pago" EntityType="Self.Pago" />
+    <EntitySet Name="Pedido" EntityType="Self.Pedido" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="BodegaProducto" EntityType="Self.BodegaProducto" />
+    <EntitySet Name="DetallePedido" EntityType="Self.DetallePedido" />
+    <AssociationSet Name="FK_DetallePedido_Pedido" Association="Self.FK_DetallePedido_Pedido">
+      <End Role="Pedido" EntitySet="Pedido" />
+      <End Role="DetallePedido" EntitySet="DetallePedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DetallePedido_Producto" Association="Self.FK_DetallePedido_Producto">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="DetallePedido" EntitySet="DetallePedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BodegaProducto_Bodega" Association="BodegaModel.FK_BodegaProducto_Bodega">
+      <End Role="Bodega" EntitySet="Bodega" />
+      <End Role="BodegaProducto" EntitySet="BodegaProducto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedido_Cliente" Association="BodegaModel.FK_Pedido_Cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pago_Pedido" Association="BodegaModel.FK_Pago_Pedido">
+      <End Role="Pedido" EntitySet="Pedido" />
+      <End Role="Pago" EntitySet="Pago" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BodegaProducto_Producto" Association="BodegaModel.FK_BodegaProducto_Producto">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="BodegaProducto" EntitySet="BodegaProducto" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_BodegaProducto_Bodega">
+    <End Type="BodegaModel.Bodega" Role="Bodega" Multiplicity="1" />
+    <End Type="BodegaModel.BodegaProducto" Role="BodegaProducto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bodega">
+        <PropertyRef Name="idBodega" />
+      </Principal>
+      <Dependent Role="BodegaProducto">
+        <PropertyRef Name="idBodega" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedido_Cliente">
+    <End Type="BodegaModel.Cliente" Role="Cliente" Multiplicity="1" />
+    <End Type="BodegaModel.Pedido" Role="Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="idCliente" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="idCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pago_Pedido">
+    <End Type="BodegaModel.Pedido" Role="Pedido" Multiplicity="1" />
+    <End Type="BodegaModel.Pago" Role="Pago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedido">
+        <PropertyRef Name="idPedido" />
+      </Principal>
+      <Dependent Role="Pago">
+        <PropertyRef Name="idPedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BodegaProducto_Producto">
+    <End Type="BodegaModel.Producto" Role="Producto" Multiplicity="1" />
+    <End Type="BodegaModel.BodegaProducto" Role="BodegaProducto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="idProducto" />
+      </Principal>
+      <Dependent Role="BodegaProducto">
+        <PropertyRef Name="idProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
